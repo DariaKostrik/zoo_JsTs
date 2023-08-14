@@ -22,7 +22,7 @@ interface Aviary {
     biom: string;
     sizeOfAviary: number;
     reservoir:boolean; 
-    animals: any[];
+    animals: Pet[];
 }
 
 let desertOne: Aviary ={
@@ -110,12 +110,12 @@ const ElephantTwo: Pet ={
 
 function AnimalInAviary(pet: Pet, aviary: Aviary):string{
 
-    const allAnimal = aviary.animals;
-    const findPet = allAnimal.some(item => item.name == pet.name);
-        return "Это";
+    const allAnimal = aviary?.animals;
+    // const findPet = aviary.animals?.some(item => item?.name == pet.name);
+        return "jjjj";
     }
-AnimalInAviary(ElephantTwo,tropicsTwo);
-console.log(AnimalInAviary(ElephantTwo,tropicsTwo));
+AnimalInAviary(ElephantTwo, tropicsTwo);
+console.log(AnimalInAviary(ElephantTwo, tropicsTwo));
 
 
 // console.log("jjj");

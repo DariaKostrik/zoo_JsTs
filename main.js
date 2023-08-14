@@ -82,10 +82,11 @@ var ElephantTwo = {
     dailyFoodNorm: 30
 };
 function AnimalInAviary(pet, aviary) {
-    var allAnimal = aviary.animals;
-    var findPet = allAnimal.some(function (item) { return item.name == pet.name; });
-    return "Это";
+    var allAnimal = aviary === null || aviary === void 0 ? void 0 : aviary.animals;
+    // const findPet = aviary.animals?.some(item => item?.name == pet.name);
+    return "jjjj";
 }
+AnimalInAviary(ElephantTwo, tropicsTwo);
 console.log(AnimalInAviary(ElephantTwo, tropicsTwo));
 // console.log("jjj");
 // }
