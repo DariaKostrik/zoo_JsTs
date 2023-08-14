@@ -4,7 +4,7 @@
 
 interface Animal {
     species: string;
-    biom: string;
+    biome: string;
     reservoir: boolean;
     sizeOfAviaryPerAnimal: number;
     food: string [];
@@ -15,40 +15,45 @@ interface Species{
     name: string;
     dailyFoodNorm: number;
 }
-export type Pet = Animal&Species;
+// export
+ type Pet = Animal&Species;
 
 interface Aviary {
     
-    biom: string;
+    biome: string;
     sizeOfAviary: number;
+    freeSpace: number;
     reservoir:boolean; 
     animals: Pet[];
 }
 
 let desertOne: Aviary ={
-    biom: 'desert',
+    biome: 'desert',
     sizeOfAviary: 40,
+    freeSpace: 40,
     reservoir:true,
     animals: [],
 }
 let tropicsOne: Aviary ={
-    biom: 'tropics',
+    biome: 'tropics',
     sizeOfAviary: 100,
+    freeSpace: 100,
     reservoir:true,
     animals: [],
 }
 let tropicsTwo: Aviary ={
-    biom: 'tropics',
+    biome: 'tropics',
     sizeOfAviary: 80,
+    freeSpace: 80,
     reservoir: true,
     animals: [],
 }
 
 
 
-const SaigarOne: Pet ={
+const saigarOne: Pet ={
     species:'saiga',
-    biom: 'desert',
+    biome: 'desert',
     reservoir: false,
     sizeOfAviaryPerAnimal: 22,
     food: ['grass'],
@@ -56,9 +61,9 @@ const SaigarOne: Pet ={
     name: 'Bob',
     dailyFoodNorm: 1.2
 }
-const Сamel: Pet={
+const camel: Pet={
     species:"camel",
-    biom: "desert",
+    biome: "desert",
     reservoir: false,
     sizeOfAviaryPerAnimal: 10,
     food: ['grass'],
@@ -67,9 +72,9 @@ const Сamel: Pet={
     dailyFoodNorm: 3
 }
 
-const CrocodileOne: Pet ={
+const crocodileOne: Pet ={
     species:'crocodile',
-    biom: 'tropics',
+    biome: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
     food: ['meat','burds','fish'],
@@ -77,9 +82,9 @@ const CrocodileOne: Pet ={
     name: 'Kiki',
     dailyFoodNorm: 1
 }
-const CrocodileTwo: Pet={
+const crocodileTwo: Pet={
     species: 'crocodile',
-    biom: 'tropics',
+    biome: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
     food: ['meat','burds','fish'],
@@ -87,9 +92,9 @@ const CrocodileTwo: Pet={
     name: 'Tom',
     dailyFoodNorm: 1
 }
-const ElephantOne: Pet ={
+const elephantOne: Pet ={
     species:'elephant',
-    biom: 'tropics',
+    biome: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
     food: ['fruit','vegetables'],
@@ -97,9 +102,9 @@ const ElephantOne: Pet ={
     name: 'Ella',
     dailyFoodNorm: 30
 }
-const ElephantTwo: Pet ={
+const elephantTwo: Pet ={
     species:'elephant',
-    biom: 'tropics',
+    biome: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
     food: ['fruit','vegetables'],
@@ -108,17 +113,52 @@ const ElephantTwo: Pet ={
     dailyFoodNorm: 30
 }
 
-function AnimalInAviary(pet: Pet, aviary: Aviary):string{
+function animalInAviary(pet: Pet, aviary: Aviary):boolean{
+    let ChechingSuccessful=true;
+    const findPet = aviary.animals.find(item => item.name == pet.name);
+    if (findPet!== undefined )
+        {
+            let ChechingSuccessful=false;
+            console.log("этот зверь уже в этом вольере"); 
+        }
 
-    const allAnimal = aviary?.animals;
-    // const findPet = aviary.animals?.some(item => item?.name == pet.name);
-        return "jjjj";
+        if (aviary.biome!==pet.biome)
+        {  let ChechingSuccessful=false;
+            console.log("биом не подходит");
+        }
+        
+        if(aviary.freeSpace<=pet.sizeOfAviaryPerAnimal)
+        {
+            let ChechingSuccessful=false;
+            console.log("вольере не хватает места");
+        }
+        if(aviary.reservoir!==pet.reservoir&& pet.reservoir==true)
+        {
+            let ChechingSuccessful=false;
+            console.log("в вольере нет пруда для животного");
+        }
+        if(aviary.animals.length>0)
+        {
+            if(findPet?.predator!== pet.predator)
+            {
+                let ChechingSuccessful=false;
+                console.log("травоядного нельзя селить c хищником");
+            }
+            if(findPet?.predator==true&& findPet?.species!==pet.species)
+            {
+                let ChechingSuccessful=false;
+                console.log("травоядного нельзя селить в вольер к хищнику");
+            }
+            if(findPet?.predator==true&& findPet?.species!==pet.species)
+            {
+                let ChechingSuccessful=false;
+                console.log("хищников разных видов нельзя селить вместе");
+            }
+        }
+        console.log(ChechingSuccessful);
+        return ChechingSuccessful;
     }
-AnimalInAviary(ElephantTwo, tropicsTwo);
-console.log(AnimalInAviary(ElephantTwo, tropicsTwo));
-
-
-// console.log("jjj");
+animalInAviary(elephantTwo, tropicsTwo); 
 // }
 // function isAnimalCanLiveInThisBiom()
 // {
