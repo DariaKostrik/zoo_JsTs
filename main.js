@@ -83,14 +83,8 @@ var ElephantTwo = {
 };
 function AnimalInAviary(pet, aviary) {
     var allAnimal = aviary.animals;
-    var findPet = allAnimal.find(function (item) { return item.name == pet.name; });
-    if (allAnimal !== undefined) {
-        return "sss";
-    }
-    else {
-        return "Это";
-    }
-    console.log("no animals");
+    var findPet = allAnimal.some(function (item) { return item.name == pet.name; });
+    return "Это";
 }
 console.log(AnimalInAviary(ElephantTwo, tropicsTwo));
 // console.log("jjj");

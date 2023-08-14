@@ -111,20 +111,10 @@ const ElephantTwo: Pet ={
 function AnimalInAviary(pet: Pet, aviary: Aviary):string{
 
     const allAnimal = aviary.animals;
-    const findPet = allAnimal.find(item => item.name == pet.name);
-    if (allAnimal !==undefined)
-    {
-        
-                return "sss";
-
-            }
-            else{
+    const findPet = allAnimal.some(item => item.name == pet.name);
         return "Это";
     }
-
-        console.log("no animals");
-        
-}
+AnimalInAviary(ElephantTwo,tropicsTwo);
 console.log(AnimalInAviary(ElephantTwo,tropicsTwo));
 
 
