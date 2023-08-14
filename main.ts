@@ -12,7 +12,7 @@ interface Animal {
 }
 
 interface Species{
-    name: string|undefined ;
+    name: string;
     dailyFoodNorm: number;
 }
 export type Pet = Animal&Species;
@@ -22,7 +22,7 @@ interface Aviary {
     biom: string;
     sizeOfAviary: number;
     reservoir:boolean; 
-    animals: [];
+    animals: any[];
 }
 
 let desertOne: Aviary ={
@@ -46,7 +46,7 @@ let tropicsTwo: Aviary ={
 
 
 
-let SaigarOne: Pet ={
+const SaigarOne: Pet ={
     species:'saiga',
     biom: 'desert',
     reservoir: false,
@@ -56,18 +56,18 @@ let SaigarOne: Pet ={
     name: 'Bob',
     dailyFoodNorm: 1.2
 }
-let Сamel: Pet={
+const Сamel: Pet={
     species:"camel",
     biom: "desert",
     reservoir: false,
     sizeOfAviaryPerAnimal: 10,
     food: ['grass'],
     predator: false,
-    name: 'Coco',
+    name: 'Cocoa',
     dailyFoodNorm: 3
 }
 
-    let CrocodileOne: Pet ={
+const CrocodileOne: Pet ={
     species:'crocodile',
     biom: 'tropics',
     reservoir: true,
@@ -77,7 +77,7 @@ let Сamel: Pet={
     name: 'Kiki',
     dailyFoodNorm: 1
 }
-let CrocodileTwo: Pet={
+const CrocodileTwo: Pet={
     species: 'crocodile',
     biom: 'tropics',
     reservoir: true,
@@ -87,7 +87,7 @@ let CrocodileTwo: Pet={
     name: 'Tom',
     dailyFoodNorm: 1
 }
-let ElephantOne: Pet ={
+const ElephantOne: Pet ={
     species:'elephant',
     biom: 'tropics',
     reservoir: false,
@@ -97,7 +97,7 @@ let ElephantOne: Pet ={
     name: 'Ella',
     dailyFoodNorm: 30
 }
-let ElephantTwo: Pet ={
+const ElephantTwo: Pet ={
     species:'elephant',
     biom: 'tropics',
     reservoir: false,
@@ -108,12 +108,25 @@ let ElephantTwo: Pet ={
     dailyFoodNorm: 30
 }
 
-function isAnimalInTheAviary(pet: Pet, aviary: Aviary){
+function AnimalInAviary(pet: Pet, aviary: Aviary):string{
 
-    console.log('nnnnn');
+    const allAnimal = aviary.animals;
+    const findPet = allAnimal.find(item => item.name == pet.name);
+    if (allAnimal !==undefined)
+    {
+        
+                return "sss";
+
+            }
+            else{
+        return "Это";
+    }
+
+        console.log("no animals");
+        
 }
-console.log(isAnimalInTheAviary(ElephantTwo,tropicsTwo));
-isAnimalInTheAviary(ElephantTwo,tropicsTwo);
+console.log(AnimalInAviary(ElephantTwo,tropicsTwo));
+
 
 // console.log("jjj");
 // }

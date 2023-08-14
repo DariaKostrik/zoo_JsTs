@@ -38,7 +38,7 @@ var Сamel = {
     sizeOfAviaryPerAnimal: 10,
     food: ['grass'],
     predator: false,
-    name: 'Coco',
+    name: 'Cocoa',
     dailyFoodNorm: 3
 };
 var CrocodileOne = {
@@ -81,11 +81,18 @@ var ElephantTwo = {
     name: 'Eigon',
     dailyFoodNorm: 30
 };
-function isAnimalInTheAviary(pet, aviary) {
-    console.log('nnnnn');
+function AnimalInAviary(pet, aviary) {
+    var allAnimal = aviary.animals;
+    var findPet = allAnimal.find(function (item) { return item.name == pet.name; });
+    if (allAnimal !== undefined) {
+        return "sss";
+    }
+    else {
+        return "Это";
+    }
+    console.log("no animals");
 }
-console.log(isAnimalInTheAviary(ElephantTwo, tropicsTwo));
-isAnimalInTheAviary(ElephantTwo, tropicsTwo);
+console.log(AnimalInAviary(ElephantTwo, tropicsTwo));
 // console.log("jjj");
 // }
 // function isAnimalCanLiveInThisBiom()
