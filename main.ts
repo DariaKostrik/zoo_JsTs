@@ -1,34 +1,13 @@
-type Biom = "desert"|"tropics"|"tundra"
-interface Aviary {
-    
-    biom: Biom,
-    sizeOfAviary: number,
-    reservoir:boolean; 
-}
-
-
-const Desert: Aviary ={
-    biom: "desert",
-    sizeOfAviary: 40,
-    reservoir:true
-}
-const TropicsOne: Aviary ={
-    biom: "tropics",
-    sizeOfAviary: 100,
-    reservoir:true
-}
-const TropicsTwo: Aviary ={
-    biom: "tropics",
-    sizeOfAviary: 80,
-    reservoir:true
-}
+// type Biom = "desert"|"tropics"
+// type Living ="remove"|"add"
+// import test from "./test"
 
 interface Animal {
-    species: string,
-    biom: Biom,
+    species: string;
+    biom: string;
     reservoir: boolean;
     sizeOfAviaryPerAnimal: number;
-    food: string[];
+    food: string [];
     predator: boolean;
 }
 
@@ -36,66 +15,119 @@ interface Species{
     name: string|undefined ;
     dailyFoodNorm: number;
 }
+export type Pet = Animal&Species;
+
+interface Aviary {
+    
+    biom: string;
+    sizeOfAviary: number;
+    reservoir:boolean; 
+    animals: [];
+}
+
+let desertOne: Aviary ={
+    biom: 'desert',
+    sizeOfAviary: 40,
+    reservoir:true,
+    animals: [],
+}
+let tropicsOne: Aviary ={
+    biom: 'tropics',
+    sizeOfAviary: 100,
+    reservoir:true,
+    animals: [],
+}
+let tropicsTwo: Aviary ={
+    biom: 'tropics',
+    sizeOfAviary: 80,
+    reservoir: true,
+    animals: [],
+}
 
 
-let SaigarOne: Animal&Species ={
-    species:"saiga",
-    biom: "desert",
+
+let SaigarOne: Pet ={
+    species:'saiga',
+    biom: 'desert',
     reservoir: false,
     sizeOfAviaryPerAnimal: 22,
-    food: ["grass"],
+    food: ['grass'],
     predator: false,
-    name: "Bob",
+    name: 'Bob',
     dailyFoodNorm: 1.2
 }
-let Сamel: Animal& Species ={
+let Сamel: Pet={
     species:"camel",
     biom: "desert",
     reservoir: false,
     sizeOfAviaryPerAnimal: 10,
-    food: ["grass"],
+    food: ['grass'],
     predator: false,
-    name: undefined,
+    name: 'Coco',
     dailyFoodNorm: 3
 }
 
-    let CrocodileOne: Animal& Species ={
-    species:"crocodile",
-    biom: "tropics",
+    let CrocodileOne: Pet ={
+    species:'crocodile',
+    biom: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
-    food: ["meat","burds","fish"],
+    food: ['meat','burds','fish'],
     predator: true,
-    name: "Kiki",
+    name: 'Kiki',
     dailyFoodNorm: 1
 }
-let CrocodileTwo: Animal&Species ={
-    species: "crocodile",
-    biom: "tropics",
+let CrocodileTwo: Pet={
+    species: 'crocodile',
+    biom: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
-    food: ["meat","burds","fish"],
+    food: ['meat','burds','fish'],
     predator: true,
-    name: "Tom",
+    name: 'Tom',
     dailyFoodNorm: 1
 }
-let ElephantOne: Animal&Species ={
-    species:"elephant",
-    biom: "tropics",
+let ElephantOne: Pet ={
+    species:'elephant',
+    biom: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
-    food: ["fruit","vegetables"],
+    food: ['fruit','vegetables'],
     predator: false,
-    name: "Ella",
+    name: 'Ella',
     dailyFoodNorm: 30
 }
-let ElephantTwo: Animal&Species ={
-    species:"elephant",
-    biom: "tropics",
+let ElephantTwo: Pet ={
+    species:'elephant',
+    biom: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
-    food: ["fruit","vegetables"],
+    food: ['fruit','vegetables'],
     predator: false,
-    name: "Eigon",
+    name: 'Eigon',
     dailyFoodNorm: 30
 }
+
+function isAnimalInTheAviary(pet: Pet, aviary: Aviary){
+
+    console.log('nnnnn');
+}
+console.log(isAnimalInTheAviary(ElephantTwo,tropicsTwo));
+isAnimalInTheAviary(ElephantTwo,tropicsTwo);
+
+// console.log("jjj");
+// }
+// function isAnimalCanLiveInThisBiom()
+// {
+
+// }
+// function canAnimalLiveWithNeibours()
+// {
+    
+// }
+// function addOrRemoveAnimalToAviary(){
+
+// }
+
+// function checkAmountOfFoodForAviary(){}
+
