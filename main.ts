@@ -1,6 +1,4 @@
-// type Biom = "desert"|"tropics"
-// type Living ="remove"|"add"
-// import test from "./test"
+
 interface Animal {
     species: string;
     biome: string;
@@ -14,7 +12,6 @@ interface Species{
     name: string;
     dailyFoodNorm: number;
 }
-// export
  type Pet = Animal&Species;
 
 interface Aviary {
@@ -48,8 +45,6 @@ let tropicsTwo: Aviary ={
     reservoir: true,
     animals: [],
 }
-
-
 
 const saigarOne: Pet ={
     species:'saiga',
@@ -233,9 +228,9 @@ function removeAnimalFromAviary(pet: Pet, aviary: Aviary):string{
     }   
 }
 
-addAnimalToAviary(tigerOne, tropicsOne);
-addAnimalToAviary(camel, desertOne);
-addAnimalToAviary(elephantOne, tropicsOne);
-removeAnimalFromAviary(tigerOne,tropicsOne);
-addAnimalToAviary(crocodileOne, tropicsTwo);
-getAmountOfFood();
+// addAnimalToAviary(tigerOne, tropicsOne);
+// addAnimalToAviary(camel, desertOne);
+// addAnimalToAviary(elephantOne, tropicsOne);
+// removeAnimalFromAviary(tigerOne,tropicsOne);
+// addAnimalToAviary(crocodileOne, tropicsTwo);
+// getAmountOfFood();
