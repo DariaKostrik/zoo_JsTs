@@ -1,13 +1,12 @@
 // type Biom = "desert"|"tropics"
 // type Living ="remove"|"add"
 // import test from "./test"
-
 interface Animal {
     species: string;
     biome: string;
     reservoir: boolean;
     sizeOfAviaryPerAnimal: number;
-    food: string [];
+    food: string;
     predator: boolean;
 }
 
@@ -26,6 +25,7 @@ interface Aviary {
     reservoir:boolean; 
     animals: Pet[];
 }
+
 
 let desertOne: Aviary ={
     biome: 'desert',
@@ -56,7 +56,7 @@ const saigarOne: Pet ={
     biome: 'desert',
     reservoir: false,
     sizeOfAviaryPerAnimal: 22,
-    food: ['grass'],
+    food: 'grass',
     predator: false,
     name: 'Bob',
     dailyFoodNorm: 1.2
@@ -66,7 +66,7 @@ const camel: Pet={
     biome: "desert",
     reservoir: false,
     sizeOfAviaryPerAnimal: 10,
-    food: ['grass'],
+    food: 'grass',
     predator: false,
     name: 'Cocoa',
     dailyFoodNorm: 3
@@ -77,7 +77,7 @@ const crocodileOne: Pet ={
     biome: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
-    food: ['meat','burds','fish'],
+    food: 'meat',
     predator: true,
     name: 'Kiki',
     dailyFoodNorm: 1
@@ -87,7 +87,7 @@ const crocodileTwo: Pet={
     biome: 'tropics',
     reservoir: true,
     sizeOfAviaryPerAnimal: 30,
-    food: ['meat','burds','fish'],
+    food: 'meat',
     predator: true,
     name: 'Tom',
     dailyFoodNorm: 1
@@ -97,7 +97,7 @@ const elephantOne: Pet ={
     biome: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
-    food: ['fruit','vegetables'],
+    food: 'vegetables',
     predator: false,
     name: 'Ella',
     dailyFoodNorm: 30
@@ -107,68 +107,106 @@ const elephantTwo: Pet ={
     biome: 'tropics',
     reservoir: false,
     sizeOfAviaryPerAnimal: 25,
-    food: ['fruit','vegetables'],
+    food: 'vegetables',
     predator: false,
     name: 'Eigon',
     dailyFoodNorm: 30
 }
+const tigerOne: Pet ={
+    species:'tiger',
+    biome: 'tropics',
+    reservoir: false,
+    sizeOfAviaryPerAnimal: 25,
+    food: 'meat',
+    predator: false,
+    name: 'Tima',
+    dailyFoodNorm: 15
+}
+
+let AllAviaries: Aviary[] = [desertOne, tropicsOne, tropicsTwo];
+
+function getAmountOfFood():void
+{
+    let Meat = 0;
+    let Grass = 0;
+    let Vegetables =0;
+    AllAviaries.forEach(volier=>{
+        volier.animals.forEach(items=> {
+        if (items.food=="meat")
+        {
+            Meat+= items.dailyFoodNorm;
+        }
+        if (items.food=="grass")
+        {
+            Grass+= items.dailyFoodNorm;
+        }
+        if (items.food=="vegetables")
+        {
+            Vegetables+= items.dailyFoodNorm;
+        }
+    });
+    });
+    console.log("мясо "+ Meat);
+    console.log("Трава "+Grass);
+    console.log("овощи "+Vegetables);
+}
+
 
 function compatibilityCheck (pet: Pet, aviary: Aviary):boolean{
-    let ChechingSuccessful=true;
     const findPet = aviary.animals.find(item => item.name == pet.name);
     if (findPet!== undefined )
         {
-            let ChechingSuccessful=false;
             console.log("этот зверь уже в этом вольере"); 
+            return false;
         }
 
         if (aviary.biome!==pet.biome)
-        {  let ChechingSuccessful=false;
+        {              
             console.log("биом не подходит");
+            return false;
         }
         
         if(aviary.freeSpace<=pet.sizeOfAviaryPerAnimal)
         {
-            let ChechingSuccessful=false;
             console.log("в вольере не хватает места");
+            return false;
         }
         if(aviary.reservoir!==pet.reservoir&& pet.reservoir==true)
         {
-            let ChechingSuccessful=false;
             console.log("в вольере нет пруда для животного");
+            return false;
         }
         if(aviary.animals.length>0)
         {
-            let ChechingSuccessful= checkNeiboursInAviary(pet, findPet);
+            return checkNeiboursInAviary(pet, findPet);
         }
-        console.log(ChechingSuccessful);
-        return ChechingSuccessful;
+        return true;
     }
     
     function checkNeiboursInAviary(pet: Pet, findPet):boolean{  
-        let ChechingSuccessful=true;
+
         if(findPet?.predator!== pet.predator)
         {
-        let ChechingSuccessful=false;
-        console.log("травоядного нельзя селить c хищником");
+            console.log("травоядного нельзя селить c хищником");
+            return false;
     }
     if(findPet?.predator==true&& findPet?.species!==pet.species)
     {
-        let ChechingSuccessful=false;
         console.log("травоядного нельзя селить в вольер к хищнику");
+        return false;
     }
     if(findPet?.predator==true&& findPet?.species!==pet.species)
     {
-        let ChechingSuccessful=false;
         console.log("хищников разных видов нельзя селить вместе");
+        return false;
     }
-    return ChechingSuccessful;
+    return true;
 }
 
 
 function addAnimalToAviary(pet: Pet, aviary: Aviary):string{
- 
-    if(compatibilityCheck(pet,aviary) ==true )
+    let Check = compatibilityCheck(pet,aviary);
+    if(Check ==true )
     {
         aviary.animals.push(pet);
         aviary.freeSpace -= pet.sizeOfAviaryPerAnimal;
@@ -192,8 +230,12 @@ function removeAnimalFromAviary(pet: Pet, aviary: Aviary):string{
         aviary.animals.splice(index, 1);
         aviary.freeSpace+=pet.sizeOfAviaryPerAnimal;
         return "животное успешно удалено из вольера";
-    }
-    
+    }   
 }
 
-compatibilityCheck(elephantTwo, tropicsTwo); 
+addAnimalToAviary(tigerOne, tropicsOne);
+addAnimalToAviary(camel, desertOne);
+addAnimalToAviary(elephantOne, tropicsOne);
+removeAnimalFromAviary(tigerOne,tropicsOne);
+addAnimalToAviary(crocodileOne, tropicsTwo);
+getAmountOfFood();
