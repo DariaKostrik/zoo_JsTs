@@ -102,30 +102,44 @@ function animalInAviary(pet, aviary) {
         console.log("в вольере нет пруда для животного");
     }
     if (aviary.animals.length > 0) {
-        if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) !== pet.predator) {
-            var ChechingSuccessful_5 = false;
-            console.log("травоядного нельзя селить c хищником");
-        }
-        if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) == true && (findPet === null || findPet === void 0 ? void 0 : findPet.species) !== pet.species) {
-            var ChechingSuccessful_6 = false;
-            console.log("травоядного нельзя селить в вольер к хищнику");
-        }
-        if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) == true && (findPet === null || findPet === void 0 ? void 0 : findPet.species) !== pet.species) {
-            var ChechingSuccessful_7 = false;
-            console.log("хищников разных видов нельзя селить вместе");
-        }
+        var ChechingSuccessful_5 = checkNeiboursInAviary(pet, findPet);
+        // if(findPet?.predator!== pet.predator)
+        // {
+        //     let ChechingSuccessful=false;
+        //     console.log("травоядного нельзя селить c хищником");
+        // }
+        // if(findPet?.predator==true&& findPet?.species!==pet.species)
+        // {
+        //     let ChechingSuccessful=false;
+        //     console.log("травоядного нельзя селить в вольер к хищнику");
+        // }
+        // if(findPet?.predator==true&& findPet?.species!==pet.species)
+        // {
+        //     let ChechingSuccessful=false;
+        //     console.log("хищников разных видов нельзя селить вместе");
+        // }
     }
     console.log(ChechingSuccessful);
     return ChechingSuccessful;
 }
 animalInAviary(elephantTwo, tropicsTwo);
 // }
-// function isAnimalCanLiveInThisBiom()
-// {
-// }
-// function canAnimalLiveWithNeibours()
-// {
-// }
 // function addOrRemoveAnimalToAviary(){
 // }
 // function checkAmountOfFoodForAviary(){}
+function checkNeiboursInAviary(pet, findPet) {
+    var ChechingSuccessful = true;
+    if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) !== pet.predator) {
+        var ChechingSuccessful_6 = false;
+        console.log("травоядного нельзя селить c хищником");
+    }
+    if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) == true && (findPet === null || findPet === void 0 ? void 0 : findPet.species) !== pet.species) {
+        var ChechingSuccessful_7 = false;
+        console.log("травоядного нельзя селить в вольер к хищнику");
+    }
+    if ((findPet === null || findPet === void 0 ? void 0 : findPet.predator) == true && (findPet === null || findPet === void 0 ? void 0 : findPet.species) !== pet.species) {
+        var ChechingSuccessful_8 = false;
+        console.log("хищников разных видов нельзя селить вместе");
+    }
+    return ChechingSuccessful;
+}
