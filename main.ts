@@ -171,7 +171,6 @@ function addAnimalToAviary(pet: Pet, aviary: Aviary):string{
     if(compatibilityCheck(pet,aviary) ==true )
     {
         aviary.animals.push(pet);
-
         aviary.freeSpace -= pet.sizeOfAviaryPerAnimal;
         return "животное успешно добавлено в вольер"
     }
@@ -189,8 +188,12 @@ function removeAnimalFromAviary(pet: Pet, aviary: Aviary):string{
     }
     else
     {   
+        const index = aviary.animals.indexOf(pet);
+        aviary.animals.splice(index, 1);
+        aviary.freeSpace+=pet.sizeOfAviaryPerAnimal;
         return "животное успешно удалено из вольера";
     }
+    
 }
 
 compatibilityCheck(elephantTwo, tropicsTwo); 
